@@ -3,7 +3,7 @@ let expenses = JSON.parse(localStorage.getItem('expenseDesk') || '[]');
 
 
 window.addEventListener('DOMContentLoaded', () => {
-  // Default date to today
+  
   document.getElementById('date').valueAsDate = new Date();
   renderTable();
   updateSummary();
@@ -19,11 +19,11 @@ function addExpense() {
   const msg      = document.getElementById('formMsg');
 
 
-  if (!amount || amount <= 0) return showMsg('⚠️ Please enter a valid amount.', 'error');
-  if (!reason)                return showMsg('⚠️ Please enter a reason.', 'error');
-  if (!bank)                  return showMsg('⚠️ Please select a bank.', 'error');
-  if (!category)              return showMsg('⚠️ Please select a category.', 'error');
-  if (!date)                  return showMsg('⚠️ Please pick a date.', 'error');
+  if (!amount || amount <= 0) return showMsg(' Please enter a valid amount.', 'error');
+  if (!reason)                return showMsg('Please enter a reason.', 'error');
+  if (!bank)                  return showMsg(' Please select a bank.', 'error');
+  if (!category)              return showMsg(' Please select a category.', 'error');
+  if (!date)                  return showMsg('Please pick a date.', 'error');
 
   const entry = {
     id: Date.now(),
@@ -50,14 +50,14 @@ function deleteExpense(id) {
   updateSummary();
 }
 
-// ─── Render Table ─────────────────────────────────────────────
+
 function renderTable() {
   const filterCat      = document.getElementById('filterCategory').value;
   const filterBank     = document.getElementById('filterBank').value;
   const filterDateFrom = document.getElementById('filterDateFrom').value;
   const filterDateTo   = document.getElementById('filterDateTo').value;
 
-  // Apply filters
+  
   let filtered = expenses.filter(e => {
     if (filterCat  && e.category !== filterCat)  return false;
     if (filterBank && e.bank     !== filterBank)  return false;
