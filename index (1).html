@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Expense Tracker</title>
+  <link rel="stylesheet" href="style.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet"/>
+</head>
+<body>
+
+  <main class="bg-grid"></main>
+
+  <main class="app">
+
+
+    <header class="header">
+      <header class="header-left">
+        <span class="logo-icon">💳</span>
+        <header>
+          <h1 class="logo-title">ExpenseDesk</h1>
+          <p class="logo-sub">Personal Finance Tracker</p>
+        </header>
+      </header>
+      <header class="summary-pills">
+        <header class="pill pill-total">
+          <span class="pill-label">Total Spent</span>
+          <span class="pill-value" id="totalSpent">$0.00</span>
+        </header>
+        <header class="pill pill-count">
+          <span class="pill-label">Entries</span>
+          <span class="pill-value" id="totalEntries">0</span>
+        </header>
+      </header>
+    </header>
+
+
+    <main class="main">
+
+   
+      <section class="card form-card">
+        <h2 class="card-title">Add New Expense</h2>
+
+        <main class="form-grid">
+          <main class="field">
+            <label for="amount">Amount ($)</label>
+            <input type="number" id="amount" placeholder="0.00" min="0" step="0.01" />
+          </main>
+
+          <main class="field">
+            <label for="reason">Reason</label>
+            <input type="text" id="reason" placeholder="e.g. Groceries, Rent…" />
+          </main>
+
+          <main class="field">
+            <label for="bank">Bank / Wallet</label>
+            <select id="bank">
+              <option value="">Select bank</option>
+              <option>Commercial Bank of Ethiopia</option>
+              <option>Awash Bank</option>
+              <option>Abyssinia Bank</option>
+              <option>Dashen Bank</option>
+              <option>Telebirr</option>
+              <option>Cash</option>
+              <option>Other</option>
+            </select>
+          </main>
+
+          <main class="field">
+            <label for="category">Category</label>
+            <select id="category">
+              <option value="">Select category</option>
+              <option>🍔 Food & Dining</option>
+              <option>🚌 Transport</option>
+              <option>🏠 Housing & Rent</option>
+              <option>🛒 Shopping</option>
+              <option>💊 Health</option>
+              <option>📚 Education</option>
+              <option>🎉 Entertainment</option>
+              <option>💡 Utilities</option>
+              <option>✈️ Travel</option>
+              <option>💰 Savings</option>
+              <option>📦 Other</option>
+            </select>
+          </main>
+
+          <main class="field">
+            <label for="date">Date</label>
+            <input type="date" id="date" />
+          </main>
+        </main>
+
+        <button class="btn-add" id="addBtn" onclick="addExpense()">
+          <span>+ Add Expense</span>
+        </button>
+
+        <main class="form-msg" id="formMsg"></main>
+      </section>
+
+     
+      <section class="card table-card">
+        <main class="table-header">
+          <h2 class="card-title">Expense History</h2>
+          <main class="filters">
+            <select id="filterCategory" onchange="renderTable()">
+              <option value="">All Categories</option>
+              <option>🍔 Food & Dining</option>
+              <option>🚌 Transport</option>
+              <option>🏠 Housing & Rent</option>
+              <option>🛒 Shopping</option>
+              <option>💊 Health</option>
+              <option>📚 Education</option>
+              <option>🎉 Entertainment</option>
+              <option>💡 Utilities</option>
+              <option>✈️ Travel</option>
+              <option>💰 Savings</option>
+              <option>📦 Other</option>
+            </select>
+
+            <select id="filterBank" onchange="renderTable()">
+              <option value="">All Banks</option>
+              <option>Commercial Bank of Ethiopia</option>
+              <option>Awash Bank</option>
+              <option>Abyssinia Bank</option>
+              <option>Dashen Bank</option>
+              <option>Telebirr</option>
+              <option>Cash</option>
+              <option>Other</option>
+            </select>
+
+            <input type="date" id="filterDateFrom" onchange="renderTable()" placeholder="From date" title="From date"/>
+            <input type="date" id="filterDateTo"   onchange="renderTable()" placeholder="To date"   title="To date"/>
+
+            <button class="btn-clear" onclick="clearFilters()">Clear Filters</button>
+          </main>
+        </main>
+
+        <main class="legend">
+          <span class="legend-dot green"></span><span>≥ $500</span>
+          <span class="legend-dot yellow"></span><span>≥ $1,000</span>
+          <span class="legend-dot red"></span><span>≥ $5,000</span>
+        </main>
+
+        <main class="table-wrap">
+          <table id="expenseTable">
+            <thead>
+              <tr>
+                <th>#</th>
+                <th>Date</th>
+                <th>Reason</th>
+                <th>Category</th>
+                <th>Bank</th>
+                <th>Amount</th>
+                <th>Action</th>
+              </tr>
+            </thead>
+            <tbody id="tableBody">
+           
+            </tbody>
+          </table>
+          <footer class="empty-state" id="emptyState">
+            <span>📭</span>
+            <p>No expenses yet. Add your first one above!</p>
+          </footer>
+        </footer>
+      </section>
+
+    </footer>
+  </footer>
+
+  <script src="app.js"></script>
+</body>
+</html>
