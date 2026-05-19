@@ -18,8 +18,7 @@ function addExpense() {
 
   
   const entry = {
-    amount: Number(amountVal), // Convert string text to an actual number
-    reason: reasonVal,
+    amount: Number(amountVal), 
     bank: bankVal,
     category: categoryVal,
     date: dateVal
